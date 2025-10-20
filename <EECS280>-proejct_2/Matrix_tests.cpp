@@ -10,7 +10,8 @@ using namespace std;
 // -----
 // Fills a 3x5 Matrix with a value and checks
 // that Matrix_at returns that value for each element.
-TEST(test_fill_basic) {
+TEST(test_fill_basic)
+{
     Matrix mat;
     const int width = 3;
     const int height = 5;
@@ -18,14 +19,17 @@ TEST(test_fill_basic) {
     Matrix_init(&mat, 3, 5);
     Matrix_fill(&mat, value);
 
-    for (int r = 0; r < height; ++r) {
-        for (int c = 0; c < width; ++c) {
+    for (int r = 0; r < height; ++r)
+    {
+        for (int c = 0; c < width; ++c)
+        {
             ASSERT_EQUAL(*Matrix_at(&mat, r, c), value);
         }
     }
 }
 
-TEST(test_matrix_init) {
+TEST(test_matrix_init)
+{
     Matrix mat;
     const int width = 4;
     const int height = 6;
@@ -35,62 +39,76 @@ TEST(test_matrix_init) {
     ASSERT_EQUAL(Matrix_height(&mat), height);
 
     // Ensure all elements are initialized to 0
-    for (int row = 0; row < height; ++row) {
-        for (int col = 0; col < width; ++col) {
+    for (int row = 0; row < height; ++row)
+    {
+        for (int col = 0; col < width; ++col)
+        {
             ASSERT_EQUAL(*Matrix_at(&mat, row, col), 0);
         }
     }
 }
 
-TEST(test_matrix_width) {
+TEST(test_matrix_width)
+{
     Matrix mat;
     Matrix_init(&mat, 7, 8);
     ASSERT_EQUAL(Matrix_width(&mat), 7);
 }
 
-TEST(test_matrix_height) {
+TEST(test_matrix_height)
+{
     Matrix mat;
     Matrix_init(&mat, 7, 8);
     ASSERT_EQUAL(Matrix_height(&mat), 8);
 }
 
-TEST(test_matrix_at) {
+TEST(test_matrix_at)
+{
     Matrix mat;
     Matrix_init(&mat, 4, 4);
     *Matrix_at(&mat, 2, 2) = 99;
     ASSERT_EQUAL(*Matrix_at(&mat, 2, 2), 99);
 }
 
-TEST(test_matrix_fill) {
+TEST(test_matrix_fill)
+{
     Matrix mat;
     Matrix_init(&mat, 5, 5);
     Matrix_fill(&mat, 7);
 
-    for (int row = 0; row < Matrix_height(&mat); ++row) {
-        for (int col = 0; col < Matrix_width(&mat); ++col) {
+    for (int row = 0; row < Matrix_height(&mat); ++row)
+    {
+        for (int col = 0; col < Matrix_width(&mat); ++col)
+        {
             ASSERT_EQUAL(*Matrix_at(&mat, row, col), 7);
         }
     }
 }
 
-TEST(test_matrix_fill_border) {
+TEST(test_matrix_fill_border)
+{
     Matrix mat;
     Matrix_init(&mat, 4, 4);
     Matrix_fill_border(&mat, 9);
 
-    for (int row = 0; row < 4; ++row) {
-        for (int col = 0; col < 4; ++col) {
-            if ((row == 0) || (row == 3) || (col == 0) || (col == 3)) {
+    for (int row = 0; row < 4; ++row)
+    {
+        for (int col = 0; col < 4; ++col)
+        {
+            if ((row == 0) || (row == 3) || (col == 0) || (col == 3))
+            {
                 ASSERT_EQUAL(*Matrix_at(&mat, row, col), 9);
             }
-            else {
+            else
+            {
                 ASSERT_EQUAL(*Matrix_at(&mat, row, col), 0);
             }
         }
     }
 }
 
-TEST(test_matrix_max) {
+TEST(test_matrix_max)
+{
     Matrix mat;
     Matrix_init(&mat, 3, 3);
     *Matrix_at(&mat, 1, 1) = 50;
@@ -100,8 +118,10 @@ TEST(test_matrix_max) {
     ASSERT_EQUAL(Matrix_max(&mat), 100);
 
     Matrix_init(&mat, 4, 4);
-    for (int row = 0; row < 4; ++row) {
-        for (int col = 0; col < 4; ++col) {
+    for (int row = 0; row < 4; ++row)
+    {
+        for (int col = 0; col < 4; ++col)
+        {
             *Matrix_at(&mat, row, col) = -2;
         }
     }
@@ -127,7 +147,8 @@ TEST(test_matrix_max) {
     ASSERT_EQUAL(Matrix_max(&mat), 42);
 }
 
-TEST(test_matrix_column_of_min_value_in_row) {
+TEST(test_matrix_column_of_min_value_in_row)
+{
     Matrix mat;
     Matrix_init(&mat, 4, 4);
     *Matrix_at(&mat, 2, 1) = 3;
@@ -137,7 +158,8 @@ TEST(test_matrix_column_of_min_value_in_row) {
     ASSERT_EQUAL(Matrix_column_of_min_value_in_row(&mat, 2, 1, 4), 2);
 }
 
-TEST(test_matrix_min_value_in_row) {
+TEST(test_matrix_min_value_in_row)
+{
     Matrix mat;
     Matrix_init(&mat, 5, 5);
     *Matrix_at(&mat, 3, 1) = 5;
@@ -175,4 +197,4 @@ TEST(test_matrix_min_value_in_row) {
 // ADD YOUR TESTS HERE
 // You are encouraged to use any functions from Matrix_test_helpers.hpp as needed.
 
-TEST_MAIN() // Do NOT put a semicolon here 
+TEST_MAIN() // Do NOT put a semicolon here
